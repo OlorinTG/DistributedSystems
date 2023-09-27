@@ -5,7 +5,7 @@ import threading
 
 run_as_server = False
 server_address = ('localhost', 0)
-
+conn = None
 #check if command line arg was given
 if len(sys.argv) >=2:
     arg1 = sys.argv[1]
@@ -58,7 +58,7 @@ try:
 except KeyboardInterrupt:
     pass
 finally:
-    if run_as_server:
+    if conn is not None:
         conn.close()
     else:
         sock.close()
